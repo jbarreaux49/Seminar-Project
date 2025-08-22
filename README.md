@@ -13,3 +13,19 @@ Move the sliders to detect the blue border of the TV. Once this is done, press N
 Make sure not to move the camera afterward, since the borders detected in the previous step are static and will not adapt if the camera is moved.
 
 Align the projector as indicated by the program until you get the correct alignment. After that, close the program.
+
+# Unity projection
+
+After the calibration step, you can display your Unity project through this command:
+
+```bash
+python unity_projection.py --tv path/to/tv_image.jpg --obs path/to/obs_image.jpg
+
+```
+
+
+# Video Projection 
+
+```bash
+python video_projection.py
+```
