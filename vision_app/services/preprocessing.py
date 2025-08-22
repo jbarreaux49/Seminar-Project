@@ -46,12 +46,10 @@ class ControleurImage:
         hsv = cv2.cvtColor(image_cv, cv2.COLOR_BGR2HSV)
 
         if thresholds is None:
-            # fallback to sliders (backward compatible)
             h_min, h_max = self.slider_h.getValues()
             s_min, s_max = self.slider_s.getValues()
             v_min, v_max = self.slider_v.getValues()
         else:
-            # use HsvThresholds
             h_min, h_max = thresholds.h
             s_min, s_max = thresholds.s
             v_min, v_max = thresholds.v

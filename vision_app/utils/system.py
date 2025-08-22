@@ -15,5 +15,4 @@ def add_ffmpeg_dir(ffmpeg_dir: Path) -> None:
 
 def ensure_tkslider_on_path(tkslider_dir: Path) -> None:
     if tkslider_dir.exists():
-        # Insère la racine pour que "from tkSliderWidget.tkSliderWidget import Slider" fonctionne
         sys.path.insert(0, str(tkslider_dir.parent))
