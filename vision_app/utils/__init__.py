@@ -1,1 +1,1 @@
-"""Utilitaires généraux."""
+"""General utilities."""

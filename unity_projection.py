@@ -7,10 +7,10 @@ import cv2
 import pyvirtualcam
 import argparse
 
-# DPI awareness
+
 ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
-# CLI arguments
+
 parser = argparse.ArgumentParser(description="Display two images (TV and OBS) from given paths.")
 parser.add_argument("--tv", required=True, help="Path of the image to display on the TV screen")
 parser.add_argument("--obs", required=True, help="Path of the image to stream to the OBS virtual camera")
@@ -19,7 +19,6 @@ args = parser.parse_args()
 image_tv_path = args.tv
 image_obs_path = args.obs
 
-# Monitors
 monitors = get_monitors()
 if len(monitors) < 3:
     print("Error: At least three monitors are required.")
@@ -28,7 +27,7 @@ if len(monitors) < 3:
 monitor_tv = monitors[2]
 monitor_obs = monitors[1]
 
-# Resize image to screen resolution
+
 def resize_to_screen(img_pil, monitor):
     screen_w, screen_h = monitor.width, monitor.height
     video_ratio = img_pil.width / img_pil.height
@@ -46,14 +45,14 @@ def resize_to_screen(img_pil, monitor):
 
     return img_pil
 
-# Safe image loading
+
 def load_image_safe(path):
     try:
         return Image.open(path).convert("RGB")
     except Exception:
         return None
 
-# Tkinter setup
+
 root = tk.Tk()
 root.withdraw()
 
@@ -66,7 +65,7 @@ tv_window.attributes("-topmost", True)
 tv_canvas = tk.Canvas(tv_window, width=monitor_tv.width, height=monitor_tv.height, bg="black", highlightthickness=0)
 tv_canvas.pack()
 
-# Init OBS virtual camera with initial image
+
 init_image = load_image_safe(image_obs_path)
 while init_image is None:
     print("Waiting for the initial OBS image...")
@@ -83,7 +82,7 @@ cam.send(obs_bgr)
 cam.sleep_until_next_frame()
 print(f"OBS virtual camera active: {cam.device}")
 
-# === Main loop
+
 def update():
     img_tv = load_image_safe(image_tv_path)
     img_obs = load_image_safe(image_obs_path)
@@ -107,7 +106,7 @@ def update():
         cam.send(obs_bgr)
         cam.sleep_until_next_frame()
 
-    tv_window.after(33, update)  # ~30 FPS
+    tv_window.after(33, update)  
 
 
 update()

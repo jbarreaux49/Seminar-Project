@@ -33,9 +33,6 @@ def biggest_inner_quad(mask: np.ndarray) -> np.ndarray | None:
 
 
 class ControleurImage:
-    """Same API as before: takes a PIL.Image and returns (mask_pil, annotated_pil).
-       Now optionally accepts an HsvThresholds object to drive the thresholds explicitly.
-    """
     def __init__(self, slider_h, slider_s, slider_v):
         self.slider_h = slider_h
         self.slider_s = slider_s
